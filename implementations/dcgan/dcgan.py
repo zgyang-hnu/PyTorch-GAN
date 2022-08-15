@@ -64,8 +64,8 @@ class Generator(nn.Module):
         )
 
     def forward(self, z):
-        out = self.l1(z)
-        out = out.view(out.shape[0], 128, self.init_size, self.init_size)
+        out = self.l1(z)#将100维随机噪声 转换成128*8*8的向量
+        out = out.view(out.shape[0], 128, self.init_size, self.init_size)# 将一维向量 拉成 B C H W二维空间矩阵
         img = self.conv_blocks(out)
         return img
 
